@@ -35,7 +35,7 @@ RUN sudo chown -R coder:coder /home/coder/.local
 # -----------
 
 # Install java17
-RUN sudo apt install openjdk-17-jre openjdk-17-jdk -y
+RUN sudo apt install openjdk-11-jre openjdk-11-jdk -y
 
 # Install sdkman
 RUN curl -s "https://get.sdkman.io" | bash
