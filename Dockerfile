@@ -10,7 +10,7 @@ COPY deploy-container/settings.json .local/share/code-server/User/settings.json
 ENV SHELL=/bin/bash
 
 # Install unzip + rclone (support for remote filesystem)
-RUN sudo apt-get update && sudo apt-get install unzip -y
+RUN sudo apt-get update && sudo apt-get install unzip zip -y
 RUN curl https://rclone.org/install.sh | sudo bash
 
 # Copy rclone tasks to /tmp, to potentially be used
@@ -33,6 +33,15 @@ RUN sudo chown -R coder:coder /home/coder/.local
 # COPY deploy-container/myTool /home/coder/myTool
 
 # -----------
+
+# Install java17
+RUN sudo apt install openjdk-17-jre openjdk-17-jdk -y
+
+# Install sdkman
+RUN curl -s "https://get.sdkman.io" | bash
+
+# source sdkman && install kotlin
+RUN /bin/bash -c "source /home/coder/.sdkman/bin/sdkman-init.sh && sdk install kotlin"
 
 # Port
 ENV PORT=8080
